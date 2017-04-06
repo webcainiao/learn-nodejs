@@ -4,9 +4,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var ExtractTextPluginScss = new ExtractTextPlugin('mestyle.css')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: '../src/main.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
     filename: 'build.js'
   },
