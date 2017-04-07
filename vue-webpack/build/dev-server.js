@@ -48,6 +48,7 @@ Object.keys(proxyTable).forEach(function (context) {
     options = { target: options }
   }
   app.use(proxyMiddleware(options.filter || context, options))
+  // app.use(proxyMiddleware('https://www.baidu.com'))
 })
 
 // handle fallback for HTML5 history API
@@ -63,6 +64,8 @@ app.use(hotMiddleware)
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+app.use(staticPath, express.static('./src/assets'))
+// app.use('/assets', express.static('./static'))此处可以'/assets'虚拟路径，替代'/static'静态路径
 
 var uri = 'http://localhost:' + port
 
