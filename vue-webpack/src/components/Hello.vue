@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <div>fdasdfsdf</div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links ggggg</h2>
     <h2>Esial dfgdfadfassadfasdfadfda</h2>

@@ -2,10 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 webpackConfig = {
-	output: {
-		path: path.resolve(__dirname,'../output'),
-		publicPath: '/',
-		filename: '[name].[hash].js'
+	entry: {
+		app: path.resolve(__dirname,'../src/main.js')
 	},
 	resolve: {
 		extensions: [' ','.js','.vue'],
