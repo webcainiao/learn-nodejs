@@ -4,5 +4,6 @@
 		<p>this is home page  asdfsdf</p>
 		<p>this is home page  asdfsdf</p>
 		<p>this is home page  asdfsdf</p>
+		<p>this is home page  asdfsdf</p>
 	</div>
 </template>
