@@ -1,8 +1,7 @@
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-//输出包含处理.vue文件的style的loader的函数的对象
-//这里只写关于处理scss的函数
+//输出包含处理.vue文件的style的loader的函数
+//这里以处理scss的函数为例
 exports.cssLoaders = function(options){//此函数一定返回一个对象
-	options = options;
 	//添加一个基础的处理css-loader的选项变量，在后边用于合并
 	var cssLoader = {
 		loader: 'css-loader',
