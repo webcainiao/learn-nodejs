@@ -12,13 +12,13 @@ Object.keys(webpackBaseConfig.entry).forEach( function(name) {
 webpackConfig = webpackMerge(webpackBaseConfig,{
 	devtool: 'cheap-module-eval-source-map',//或者'cheap-eval-source-map'
 	output: {
-		path: path.resolve(__dirname,'../output'),
+		path: path.resolve(__dirname,'../output'),//开发时这个好像没用，所有资源都打包到publicPath路径下，内存当中
 		publicPath: '/',
 		filename: '[name].js',//不要在开发中使用chunkhash,这会增加编译时间，推荐使用[name].js就可以了
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),//开启全局的模块热替换
-		new webpack.NamedModulesPlugin(),//当模块热替换时，在浏览器控制台输出对用户友好的模块的名称
+		new webpack.NamedModulesPlugin(),//当模块热替换时，在浏览器控制台输出对用户友好的模块的名称,没看到效果
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.optimize.CommonsChunkPlugin({//可将node_modules中的公共库，提取到单独vendor文件中
 			name: ['vendor'],

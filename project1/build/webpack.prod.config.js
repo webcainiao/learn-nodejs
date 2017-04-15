@@ -5,17 +5,26 @@ const webpackConfig  = require('./webpack.base.config.js');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestWebpackPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const utils = require('./utils');
 
 const prodWebpackConfig = webpackMerge(webpackConfig,{
+	devtool: 'source-map',//同时开启sourceMap:true,才可生成map文件，默认格式是output.filename后加.map
 	output: {
 		path: path.resolve(__dirname,'../dist'),
 		filename: 'static/js/[name].[chunkhash].js',//基于每个chunk内容的hash.若设为hash,则基于每次构建唯一的值
 	},
 	plugins: [
+		new webpack.DefinePlugin({//定义需要打包的资源目录下的文件里调用的全局变量，而不是打包编译时的变量,如:/build/里的文件不能引用此设置
+			'process.env': {
+				NODE_ENV: '"production"'
+			}
+		}),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false
-			}
+			},
+			sourceMap: true
 		}),
 		new webpack.optimize.CommonsChunkPlugin({//可将node_modules中的公共库，提取到单独vendor文件中
 			name: ['vendor'],
@@ -33,6 +42,11 @@ const prodWebpackConfig = webpackMerge(webpackConfig,{
 		}),
 		// new webpack.HashedModuleIdsPlugin(),//没有搞懂这个啥意思,当模块热替换时，在浏览器控制台输出对用户友好的模块的名称
 		new WebpackChunkHash(),//此插件可使生成的manifest.js文件的chunkhash值保持不变
+		new ExtractTextWebpackPlugin({//提取css到单独的文件中
+			filename: 'static/css/[name].[contenthash].css',//不使用hash or chunkhash
+			allChunks: true,
+			disable: false
+		}),
 	]
 })
 

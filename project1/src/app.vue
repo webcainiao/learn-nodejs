@@ -5,8 +5,15 @@
 	</div>
 </template>
 
-<style>
+<style lang='scss'>
 	body {
 		color: red;
 	}
+	#abc {
+		font-size: 12px;
+	}
 </style>
+
+<script>
+	console.log(process.env.NODE_ENV)
+</script>
