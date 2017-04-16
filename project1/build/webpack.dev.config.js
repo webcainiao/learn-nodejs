@@ -15,6 +15,7 @@ webpackConfig = webpackMerge(webpackBaseConfig,{
 		path: path.resolve(__dirname,'../output'),//开发时这个好像没用，所有资源都打包到publicPath路径下，内存当中
 		publicPath: '/',
 		filename: '[name].js',//不要在开发中使用chunkhash,这会增加编译时间，推荐使用[name].js就可以了
+		chunkFilename: '[id].[name].[chunkhash:7].js'
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),//开启全局的模块热替换

@@ -4,7 +4,12 @@ import VueRouter from 'vue-router';
 //引入路由组件
 import Index from  '../views/index/index';
 import User from '../views/user/user';
-import NotFound from '../views/notfound'
+// import NotFound from '../views/notfound';
+const NotFound = function(r){
+	return require.ensure([],function(){
+			return r(require('../views/notfound.vue'));
+		},'NotFoundChunk')
+};
 
 //调用
 Vue.use(VueRouter);
@@ -22,11 +27,11 @@ const routes = [
 	{
 		component: NotFound,
 		path: '*'
-	},
+	}
 ]
 
 //导出路由实例，传入routes。此路由实例可在入口文件里作为配置参数添加在vue实例中，并在vue实例上挂载根元素
 export default new VueRouter({
-	modle: 'history',
+	mode: 'history',
 	routes:routes,//可简写routes
 })

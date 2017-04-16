@@ -13,6 +13,7 @@ const prodWebpackConfig = webpackMerge(webpackConfig,{
 	output: {
 		path: path.resolve(__dirname,'../dist'),
 		filename: 'static/js/[name].[chunkhash].js',//基于每个chunk内容的hash.若设为hash,则基于每次构建唯一的值
+		publicPath: '/'
 	},
 	plugins: [
 		new webpack.DefinePlugin({//定义需要打包的资源目录下的文件里调用的全局变量，而不是打包编译时的变量,如:/build/里的文件不能引用此设置
