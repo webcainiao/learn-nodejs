@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const vueLoaderConfig = require('./vue-loader.config');
+const vueLoaderConfig = require('./vue_loader.config');
 
 webpackConfig = {
 	entry: {
@@ -19,7 +19,7 @@ webpackConfig = {
 		rules: [
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
+				// loader: 'vue-loader',
 				// options: {//这样写不适用于不同环境,可将此设置单独引用一个文件，增加灵活性
 				// 	loaders: {
 				// 			css: ExtractTextWebpackPlugin.extract({
@@ -47,15 +47,43 @@ webpackConfig = {
 				// 			})
 				// 	}
 				// }
-				options: vueLoaderConfig
+				// options: vueLoaderConfig,
+				use: [
+					{
+						loader: 'vue-loader',
+						options: vueLoaderConfig,
+					}
+				]
+
 			},
 			{
 				test: /\.js$/,
-				use: {
-					loader: 'babel-loader'
-				},
-				exclude:[ (/node_modules/)],
+				use: [{loader:'babel-loader'}],
 				include:[ path.resolve(__dirname,'../src')],//尽量使用include，而不是exclude
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,//没搞懂这个后面括号里的问号
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 10000,
+							name: 'static/img/[name].[hash:7].[ext]',
+						}
+					}
+				]
+			},
+			{
+				test: /\.(woff2|eot|ttf|otf)(\?.*)?$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 10000,
+							name: 'static/fonts/[name].[hash:7].[ext]',
+						}
+					}
+				]
 			}
 		]
 	},

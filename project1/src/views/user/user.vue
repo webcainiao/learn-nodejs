@@ -6,5 +6,6 @@
 			<li>adf</li>
 			<li>asdffff</li>
 		</ul>
+		<div>this is {{$route.params.id}}</div>
 	</div>
 </template>
