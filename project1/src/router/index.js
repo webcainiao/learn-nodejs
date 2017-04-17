@@ -1,18 +1,17 @@
 //使用组建模式，引入vue,vue-router,然后调用vue.use(vue-router)
-import Vue from 'vue';
+// import Vue from 'vue';
 import VueRouter from 'vue-router';
 //引入路由组件
-import Index from  '../views/index/index';
-import User from '../views/user/user';
+// import Index from  '../views/index/index';
+// import User from '../views/user/user';
 // import NotFound from '../views/notfound';
-const NotFound = function(r){
-	return require.ensure([],function(){
-			return r(require('../views/notfound.vue'));
-		},'NotFoundChunk')
-};
+// const NotFound = ;
+const NotFound = r => require.ensure([], () => r(require('../views/notfound')), 'NotFound');
+const Index = r => require.ensure([], () => r(require('../views/index/index')), 'Index');
+const User = r => require.ensure([], () => r(require('../views/user/user')), 'User');
 
 //调用
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 
 //定义路由,每个路由映射一个组件
 const routes = [
