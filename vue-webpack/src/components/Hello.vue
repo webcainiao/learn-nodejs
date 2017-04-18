@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links ggggg</h2>
-    <h2>Esial dfgdfadfassadfasdfadfda</h2>
+    <h2>Essential Link</h2>
+    <h2>Esial dfgdfadfassadfa</h2>
     <h2>Esial dfgdfadfassadfasdfadfda</h2>
     <h2>Esial dfgdfadfassadfasdfadfda</h2>
     <h2>Esial dfgdfadfassadfasdfadfda</h2>
