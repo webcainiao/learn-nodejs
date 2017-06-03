@@ -1,11 +1,11 @@
 export const formatDate = str => {
   if (!str) {
-    return '';
+    return ''
   }
-  var date = new Date(str);
-  var time = new Date().getTime() - date.getTime();
+  var date = new Date(str)
+  var time = new Date().getTime() - date.getTime()
   if (time < 0) {
-    return '';
+    return ''
   } else if (time / 1000 < 30) {
     return '刚刚'
   } else if (time / 1000 < 60) {

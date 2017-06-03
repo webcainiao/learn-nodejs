@@ -12,14 +12,14 @@ import user from './modules/user'
 // Vue启用Vuex插件
 Vue.use(Vuex)
 
-export default new Vuex.store({
+export default new Vuex.Store({
   modules: {
     com,
     list,
     topics,
     newPost,
     message,
-    user,
+    user
   },
   strict: process.env.NODE_ENV !== 'production'
 })

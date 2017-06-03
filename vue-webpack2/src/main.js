@@ -11,8 +11,8 @@ import * as filters from './utils/filter'
 
 Vue.config.productionTip = false
 
-//注册全局过滤器
-Object.keys(filters).map(k => Vue.filter(k, filters[k]));
+//  注册全局过滤器
+Object.keys(filters).map(k => Vue.filter(k, filters[k]))
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

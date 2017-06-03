@@ -46,17 +46,18 @@
   import nvTop from '../components/backtoTop.vue'
   import utils from '../libs/utils'
   export default {
-    data() {
-      return {
-
+    data () {
+      components: {
+        nvHead,
+        nvTop
       }
     },
-    beforeRouteEnter(to, from, next) {
+    beforeRouteEnter (to, from, next) {
       next(vm => {
         window.addEventListener('scroll', vm.scrollAddList, false)
       })
     },
-    mounted() {
+    mounted () {
       if (this.topics.length === 0) {
         this.$store.dispatch('getTopicslist')
       }
@@ -67,8 +68,8 @@
       })
     },
     methods: {
-      getTabInfo(good,top,tab,isClass) {
-        return utils.getTabInfo(good,top,tab,isClass)
+      getTabInfo(good, top, tab, isClass) {
+        return utils.getTabInfo(good, top, tab, isClass)
       }
     }
 

@@ -21,7 +21,7 @@ export default {
    * @param {any} accesstoken
    * @returns
    */
-  Login(accesstoken) {
+  Login (accesstoken) {
     return fetch(`/accesstoken?accesstoken=${accesstoken}`, 'POST')
   },
 
@@ -30,43 +30,43 @@ export default {
    * @param {any} params
    * @returns
    */
-  GetTopicsList(params) {
+  GetTopicsList (params) {
     return fetch(`/topics?${params}`)
-  }
+  },
 
   /**
    * 获取文章详情
    * @param {any} id 参数id
    * @returns
    */
-  GetTopicDetail(id) {
+  GetTopicDetail (id) {
     return fetch(`/topic/${id}`)
-  }
+  },
 
   /**
    * 获取用户信息
    * @param {any} name 用户名
    * @returns
    */
-  GetUserInfo(username) {
+  GetUserInfo (username) {
     return fetch(`/user/${username}`)
-  }
+  },
 
   /**
    * 获取已读和未读消息
    * @param {any} accesstoken
    * @returns
    */
-  GetMessages(accesstoken) {
+  GetMessages (accesstoken) {
     return fetch(`/messages?mdrender=true&accesstoken=${accesstoken}`)
-  }
+  },
 
   /**
    * 新建主题
    * @param {any} form
    * @returns
    */
-  NewPost(form) {
+  NewPost (form) {
     return fetch(`/topics?${form}`, 'POST')
   }
 }

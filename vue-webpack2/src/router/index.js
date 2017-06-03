@@ -46,35 +46,35 @@ const routes = [
     path: '/',
     component: List,
     name: 'list'
-  },{
+  }, {
     path: '/topic/:id',
     component: Topic,
     name: 'topic'
-  },{
+  }, {
     path: '/add',
     component: NewPost,
     name: 'add',
     meta: {requiresAuth: true}
-  },{
+  }, {
     path: '/message',
     component: Message,
-    name: 'message'，
+    name: 'message',
     meta: {requiresAuth: true}
-  },{
+  }, {
     path: '/user/:loginname',
     component: User,
     name: 'user'
-  },{
+  }, {
     path: '/login',
     component: Login,
     name: 'login'
-  },{
+  }, {
     path: '/about',
     component: About,
     name: 'about'
-  },{
+  }, {
     path: '*',
-    component: List,
+    component: List
   }
 ]
 
@@ -85,7 +85,7 @@ const router = new Router({
 })
 
 // 设置全局钩子
-router.beforeEach((to ,from ,next) => {
+router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.state.userInfo.userId) {
       next()
