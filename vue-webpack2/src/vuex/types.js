@@ -1,6 +1,6 @@
 // 设置常量mutations
 
-export const types = {
+export default {
   // com
   COM_ITEM_TAB: 'COM_ITEM_TAB',
   COM_INIT_INDEX: 'COM_INIT_INDEX',

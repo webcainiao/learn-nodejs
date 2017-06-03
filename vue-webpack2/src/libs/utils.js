@@ -1,4 +1,4 @@
-export function getTabInfo (good, top, tab, isClass) {
+export default function getTabInfo (good, top, tab, isClass) {
   let str = ''
   let className = ''
   if (good) {
