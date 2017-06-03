@@ -27,6 +27,9 @@ const mutations = {
     } else { // 每加载一页，就和前面的数据数组拼接
       state.topicsList = state.topicsList.concat(res.data)
     }
+  },
+  [types.GET_SEARCH_KEY] (state, params) {
+    state.searchKey = params
   }
 }
 const actions = {

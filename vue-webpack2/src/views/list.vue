@@ -19,7 +19,7 @@
               <div>
                 <p>
                   <span class="name">
-                    {{item.author}}
+                    {{item.author.loginname}}
                   </span>
                   <span class="status">
                     <b>{{item.reply_count}}</b>
@@ -71,9 +71,25 @@
     methods: {
       getTabInfo (good, top, tab, isClass) {
         return utils.getTabInfo(good, top, tab, isClass)
+      },
+      scrollAddList () { // 底部加载数据
+        let totalHeight = parseFloat(window.innerHeight) + parseFloat(window.scrollY)
+        if (document.body.clientHeight <= totalHeight + 300) {
+          this.$store.dispatch('getTopicslist')
+        }
+      }
+    },
+    watch: {
+      '$route' (to, from) {
+        if (to.query && to.query.tab) {
+          this.$store.commit('GET_SEARCH_KEY', {
+            page: 0,
+            tab: to.query.tab
+          })
+          this.$store.dispatch('getTopicslist')
+        }
       }
     }
-
   }
 </script>
 

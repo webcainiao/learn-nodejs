@@ -1,4 +1,5 @@
-export default function getTabInfo (good, top, tab, isClass) {
+// 不能写成 export default function funname(){}
+export function getTabInfo (good, top, tab, isClass) {
   let str = ''
   let className = ''
   if (good) {
