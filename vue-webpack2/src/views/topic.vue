@@ -34,7 +34,7 @@
               <span><time>{{reply.create_at | formatDate}}</time></span>
             </p>
           </div>
-          <div class="reply-content" v-text="reply.content">
+          <div class="reply-content" v-html="reply.content">
 
           </div>
         </li>
@@ -44,19 +44,26 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+  import * as utils from '../libs/utils'
   export default {
-    // beforeRouteEnter (to, from, next) {
-    //   next(vm => {
-
-    //   })
-    // },
-    mounted () {
-      this.$store.dispatch('getTopicDetail', this.params)
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('getTopicDetail', vm.$route.params)
+      })
     },
+    // mounted () {
+    //   this.$store.dispatch('getTopicDetail', this.$route.params)
+    // },
     computed: {
       ...mapGetters({
         topic: 'getTopicDetail'
       })
+    },
+    methods: {
+      getTabInfo (good, top, tab, isClass) {
+        return utils.getTabInfo(good, top, tab, isClass)
+      }
     }
   }
 </script>

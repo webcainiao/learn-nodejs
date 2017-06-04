@@ -5,7 +5,7 @@ const state = {
   topic: {}
 }
 const getters = {
-  getTopicDetail : state => state.topic
+  getTopicDetail: state => state.topic
 }
 const mutations = {
   [types.GET_TOPICS_DETAIL] (state, param) {
