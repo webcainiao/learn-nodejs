@@ -61,7 +61,7 @@ const routes = [
     name: 'message',
     meta: {requiresAuth: true}
   }, {
-    path: '/user/:loginname',
+    path: '/user/:username',
     component: User,
     name: 'user'
   }, {

@@ -81,10 +81,16 @@
     },
     watch: {
       '$route' (to, from) {
-        if (to.query && to.query.tab) {
+        if (to.query && to.query.tab) { // 切换到非根路由时
           this.$store.commit('GET_SEARCH_KEY', {
             page: 0,
             tab: to.query.tab
+          })
+          this.$store.dispatch('getTopicslist')
+        } else if (to.fullPath === '/') { // 切换到根路由时
+          this.$store.commit('GET_SEARCH_KEY', {
+            page: 0,
+            tab: 'all'
           })
           this.$store.dispatch('getTopicslist')
         }

@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // 引入不同状态模块
 import com from './modules/com'
 import list from './modules/list'
-import topics from './modules/topics'
+import topic from './modules/topic'
 import newPost from './modules/newPost'
 import message from './modules/message'
 import user from './modules/user'
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   modules: {
     com,
     list,
-    topics,
+    topic,
     newPost,
     message,
     user
