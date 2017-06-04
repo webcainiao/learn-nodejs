@@ -45,13 +45,11 @@
 
 <script>
   import nvHead from '../components/header.vue'
-  import nvTop from '../components/backtoTop.vue'
   import * as utils from '../libs/utils'
   import { mapGetters } from 'vuex'
   export default {
     components: {
-      nvHead,
-      nvTop
+      nvHead
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {

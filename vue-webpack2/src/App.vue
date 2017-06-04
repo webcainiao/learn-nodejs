@@ -5,13 +5,18 @@
         <router-view></router-view>
       </keep-alive>
     </transition>
+    <nv-top></nv-top>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import nvTop from './components/backtoTop.vue'
+  export default {
+    name: 'app',
+    components: {
+      nvTop
+    }
+  }
 </script>
 
 <style>
