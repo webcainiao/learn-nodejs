@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-cloak>
-    <nv-header :show="menuShow"></nv-header>
+    <nv-header></nv-header>
     <nv-top></nv-top>
     <transition name="fade" mode="out-in">
       <keep-alive>
@@ -19,14 +19,9 @@
       nvTop,
       nvHeader
     },
-    data () {
-      return {
-        menuShow: false
-      }
-    },
     watch: {
-      '$route' (to, from) {
-        this.menuShow = false
+      '$route' (to, from) { // 点击菜单列表项时，引起路由变化时，设置侧边栏菜单的状态navMenuStatus:false,隐藏菜单
+        this.$store.dispatch('setNavStatus', false)
       }
     }
   }

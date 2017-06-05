@@ -12,7 +12,7 @@
       <ul class="topic-list">
         <li v-for="item in topics" :key="item.id">
           <router-link :to="{name:'topic',params:{id:item.id}}">
-            <h3 v-text="item.title" :title="getTabInfo(item.good,item.top,item.tab,true)" :class="getTabInfo(item.good,item.top,item.tab,false)">
+            <h3 v-text="item.title" :title="getTabInfo(item.good,item.top,item.tab,false)" :class="getTabInfo(item.good,item.top,item.tab,true)">
             </h3>
             <div class="content">
               <img :src="item.author.avatar_url">
@@ -57,6 +57,12 @@
       })
     },
     mounted () {
+      if (this.$route.query && this.$route.query.tab) {
+        this.$store.commit('GET_SEARCH_KEY', {
+          page: 0,
+          tab: this.$route.query.tab
+        })
+      }
       if (this.topics.length === 0) {
         this.$store.dispatch('getTopicslist')
       }

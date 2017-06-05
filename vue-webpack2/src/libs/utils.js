@@ -2,12 +2,12 @@
 export function getTabInfo (good, top, tab, isClass) {
   let str = ''
   let className = ''
-  if (good) {
-    className = 'good'
-    str = '精华'
-  } else if (top) {
+  if (top) {
     className = 'top'
     str = '置顶'
+  } else if (good) {
+    className = 'good'
+    str = '精华'
   } else {
     switch (tab) {
       case 'ask':
