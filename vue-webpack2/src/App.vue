@@ -5,16 +5,19 @@
         <router-view></router-view>
       </keep-alive>
     </transition>
+    <nv-header></nv-header>
     <nv-top></nv-top>
   </div>
 </template>
 
 <script>
   import nvTop from './components/backtoTop.vue'
+  import nvHeader from './components/header.vue'
   export default {
     name: 'app',
     components: {
-      nvTop
+      nvTop,
+      nvHeader
     }
   }
 </script>
