@@ -12,11 +12,12 @@
 <script>
   import nvMenu from './sideBarMenu.vue'
   export default {
-    data () {
-      retrun {
-        show: false
-      }
-    },
+    // data () {
+    //   return {
+    //     show: false
+    //   }
+    // },
+    props: ['show'],
     components: {
       nvMenu
     },
@@ -28,7 +29,7 @@
         this.show = false
       },
       goBack () {
-        this.$route.go(-1)
+        this.$router.go(-1)
       }
     }
   }

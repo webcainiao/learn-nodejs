@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div class="slide" :class="'slide-in':show">
+    <div class="slide" :class="{'slide-in':show}">
       <router-link to="/">首页</router-link>
       <router-link to="/add">发布</router-link>
       <router-link to="/message">消息</router-link>
@@ -23,7 +23,8 @@
     bottom: 0;
     width: 200px;
     left: -200px;
-    .side {
+    z-index: 10;
+    .slide {
       position: absolute;
       top: 0;
       bottom: 0;

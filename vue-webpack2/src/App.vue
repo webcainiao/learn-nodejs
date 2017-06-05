@@ -1,12 +1,12 @@
 <template>
   <div id="app" v-cloak>
+    <nv-header :show="menuShow"></nv-header>
+    <nv-top></nv-top>
     <transition name="fade" mode="out-in">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
     </transition>
-    <nv-header></nv-header>
-    <nv-top></nv-top>
   </div>
 </template>
 
@@ -18,6 +18,16 @@
     components: {
       nvTop,
       nvHeader
+    },
+    data () {
+      return {
+        menuShow: false
+      }
+    },
+    watch: {
+      '$route' (to, from) {
+        this.menuShow = false
+      }
     }
   }
 </script>
