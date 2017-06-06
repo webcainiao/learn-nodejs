@@ -5,14 +5,30 @@
       <router-link to="/add">发布</router-link>
       <router-link to="/message">消息</router-link>
       <router-link to="/about">关于</router-link>
-      <router-link to="/login">登录</router-link>
+      <router-link v-if="loginStatus" to="/login">登录</router-link>
+      <router-link v-if="!loginStatus" @click="loginOut">退出</router-link>
     </div>
   </div>
 </template>
 
 <script>
+  import {mapActions, mapState} from 'vuex'
   export default {
-    props: ['show']
+    props: ['show'],
+    computed: {
+      ...mapState({
+        loginStatus: state => state.user.loginStatus
+      })
+    },
+    methods: {
+      ...mapActions({
+        setLoginOut: 'setLoginOut'
+      }),
+      loginOut () {
+        this.setLoginOut()
+        this.$router.push({name: 'list'})
+      }
+    }
   }
 </script>
 
