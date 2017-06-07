@@ -5,8 +5,8 @@
       <router-link to="/add">发布</router-link>
       <router-link to="/message">消息</router-link>
       <router-link to="/about">关于</router-link>
-      <router-link v-if="loginStatus" to="/login">登录</router-link>
-      <router-link v-if="!loginStatus" @click="loginOut">退出</router-link>
+      <router-link v-if="!loginStatus" to="/login">登录</router-link>
+      <span v-if="loginStatus" @click="loginOut">退出</span>
     </div>
   </div>
 </template>

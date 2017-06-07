@@ -91,8 +91,8 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       next({
-        path: '/list',
-        query: {redirect: to.fullPath}
+        path: '/login',
+        query: {redirect: to.fullPath} // 这里设置redirect，是为了进入消息，发布模块后，登录成功，在返回次模块
       })
     }
   } else {

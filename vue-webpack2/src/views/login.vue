@@ -1,11 +1,16 @@
 <template>
   <div>
     <section class="login-page">
-      <div class="input-token">
-        <input class="token" type="text" placeholder="请输入正确的token" maxlength="36" v-model="accesstoken">
+      <div class="need-login" v-if="!loginStatus">
+        <div class="input-token">
+          <input class="token" type="text" placeholder="请输入正确的token" maxlength="36" v-model="accesstoken">
+        </div>
+        <div class="login-btn">
+          <button class="btn" @click="login">登录</button>
+        </div>
       </div>
-      <div class="login-btn">
-        <button class="btn" @click="login">登录</button>
+      <div class="logined" v-if="loginStatus">
+        <span>已经登陆了</span>
       </div>
     </section>
   </div>
@@ -33,7 +38,16 @@
             let userInfo = Object.assign({accesstoken: this.accesstoken}, res)
             // 将返回的信息存入状态管理中,进而存储用户信息
             this.setUserInfo(userInfo)
-            this.$router.go(-1) // 这里是$router，不是$route
+            this.accesstoken = ''
+            // redirect 针对进入需要验证登录状态的模块使用
+            let redirect = this.$router.query.redirect
+            if (!redirect) {
+              this.$router.go(-1)
+            } else {
+              this.$router.push({
+                path: redirect
+              }) // 这里是$router，不是$route
+            }
           }
         }).catch(error => {
           console.log(error)
