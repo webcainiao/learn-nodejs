@@ -18,12 +18,17 @@
 
 <script>
   import api from '../fetch/api'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapState} from 'vuex'
   export default {
     data () {
       return {
         accesstoken: ''
       }
+    },
+    computed: {
+      ...mapState({
+        loginStatus: state => state.user.loginStatus
+      })
     },
     methods: {
       ...mapActions({
@@ -40,19 +45,12 @@
             this.setUserInfo(userInfo)
             this.accesstoken = ''
             // redirect 针对进入需要验证登录状态的模块使用
-            let redirect = this.$router.query.redirect
-            if (!redirect) {
-              this.$router.go(-1)
-            } else {
-              this.$router.push({
-                path: redirect
-              }) // 这里是$router，不是$route
-            }
+            this.$router.push({
+              path: this.$route.query.redirect || '/'
+            }) // 注意这里的$router,$route
           }
         }).catch(error => {
           console.log(error)
-          console.log(error.responseText)
-          console.log(JSON.parse(error.responseText))
         })
       }
     }

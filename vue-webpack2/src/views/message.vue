@@ -34,7 +34,8 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  // import {mapState} from 'vuex'
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
@@ -48,21 +49,24 @@
         vm.$store.dispatch('getMessagesData')
       })
     },
-    mounted () {
-      let has_read = this.msgList.has_read_messages
-      let has_notread = this.msgList.hasnot_read_messages
-      if (tabIndex === 1) {
-        this.currentMsgData = has_read
-        this.noData = has_read.length === 0
-      } else {
-        this.currentMsgData = has_notread
-        this.noData = has_notread.length === 0
-      }
-    },
     computed: {
-      ...mapState({
-        msgList: state => state.message.msgList
+      // ...mapState({
+      //   msgList: state => state.message.msgList
+      // })
+      ...mapGetters({
+        msgList: 'getMsgList'
       })
+    },
+    mounted () {
+      let hasRead = this.msgList.has_read_messages
+      let hasNotread = this.msgList.hasnot_read_messages
+      if (this.tabIndex === 1) {
+        this.currentMsgData = hasRead
+        // this.noData = hasRead.length === 0
+      } else {
+        this.currentMsgData = hasNotread
+        // this.noData = hasNotread.length === 0
+      }
     }
   }
 </script>

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../vuex/store'
 
 // 按需异步加载组件
 const List = resolve => {
@@ -86,8 +85,9 @@ const router = new Router({
 
 // 设置全局钩子
 router.beforeEach((to, from, next) => {
+  let user = JSON.parse(localStorage.getItem('user'))
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.state.userInfo.userId) {
+    if (user && user.id) {
       next()
     } else {
       next({
