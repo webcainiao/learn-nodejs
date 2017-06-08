@@ -16,7 +16,7 @@ Object.keys(filters).map(k => Vue.filter(k, filters[k]))
 
 // 处理刷新的时候vuex被清空,这里不太明白？
 // if (window.localStorage.user) {
-//   store.dispatch('getMessagesData')
+//   store.dispatch('getMessagesData', JSON.parse(localStorage.getItem('user')).accesstoken)
 // }
 /* eslint-disable no-new */
 new Vue({

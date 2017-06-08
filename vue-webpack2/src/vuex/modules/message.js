@@ -13,8 +13,7 @@ const mutations = {
   }
 }
 const actions = {
-  getMessagesData ({commit, rootState}) {
-    let accesstoken = rootState.user.userInfo.accesstoken
+  getMessagesData ({commit}, accesstoken) {
     api.GetMessages(accesstoken).then(res => {
       commit(types.GET_MSG_LIST, res.data)
     })

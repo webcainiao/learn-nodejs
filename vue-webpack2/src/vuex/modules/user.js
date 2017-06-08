@@ -4,7 +4,9 @@ const state = {
   loginStatus: JSON.parse(localStorage.getItem('loginStatus')) || false,
   userInfo: JSON.parse(localStorage.getItem('user')) || {}
 }
-const getters = {}
+const getters = {
+  getUserInfo: state => state.userInfo
+}
 const mutations = {
   [types.SET_USER_INFO] (state, res) {
     state.userInfo = res
