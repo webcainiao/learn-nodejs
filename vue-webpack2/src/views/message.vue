@@ -1,14 +1,14 @@
 <template>
   <div>
     <ul>
-      <li :class="{'on':tabIndex===1}" @click="tabIndex=1">已读消息</li>
-      <li :class="{'on':tabIndex===2}" @click="tabIndex=2">未读消息</li>
+      <li :class="{'on':tabIndex===1}" @click="toTabIndex(1)">已读消息</li>
+      <li :class="{'on':tabIndex===2}" @click="toTabIndex(2)">未读消息</li>
     </ul>
     <div class="msg-list">
       <ul>
         <li v-for="msg in currentMsgData">
           <div class="reply-userinfo">
-            <router-link :to="{name:'user',params:{loginname:msg.author.loginname}}">
+            <router-link :to="{name:'user',params:{username:msg.author.loginname}}">
               <img src="msg.author.avatar_url">
             </router-link>
             <div>
@@ -55,17 +55,42 @@
       // })
       ...mapGetters({
         msgList: 'getMsgList'
-      })
-    },
+      }),
+    //   currentMsgData: () => {
+    //     let hasRead = this.msgList.has_read_messages
+    //     let hasNotread = this.msgList.hasnot_read_messages
+    //     if (this.tabIndex === 1) {
+    //       this.noData = hasRead.length === 0
+    //       return hasRead
+    //     } else {
+    //       this.noData = hasNotread.length === 0
+    //       return hasNotread
+    //     }
+    //   }
+    // },
     mounted () {
-      let hasRead = this.msgList.has_read_messages
-      let hasNotread = this.msgList.hasnot_read_messages
-      if (this.tabIndex === 1) {
-        this.currentMsgData = hasRead
-        // this.noData = hasRead.length === 0
-      } else {
-        this.currentMsgData = hasNotread
-        // this.noData = hasNotread.length === 0
+      // 不知道为什么获取到的计算属性this.msgList是空的，好纠结
+      // 这里面应该不能执行条件判断
+      // let hasRead = this.msgList.has_read_messages
+      // let hasNotread = this.msgList.hasnot_read_messages
+      // if (this.tabIndex === 1) {
+      //   this.currentMsgData = hasRead
+      //   this.noData = hasRead.length === 0
+      // } else {
+      //   this.currentMsgData = hasNotread
+      //   this.noData = hasNotread.length === 0
+      // }
+    },
+    methods: {
+      toTabIndex (index) {
+        this.tabIndex = index
+        if (index === 1) {
+          this.currentMsgData = this.msgList.has_read_messages
+          this.noData = this.currentMsgData === 0
+        } else {
+          this.currentMsgData = this.msgList.hasnot_read_messages
+          this.noData = this.currentMsgData === 0
+        }
       }
     }
   }
