@@ -22,6 +22,7 @@
 
 <script>
   import {mapState} from 'vuex'
+  import api from '../fetch/api'
   export default {
     data () {
       return {
@@ -41,10 +42,12 @@
     methods: {
       publish () {
         if (!this.topic.title) {
-          return this.err = 'title'
+          this.err = 'title'
+          return
         }
         if (!this.topic.content) {
-          return this.err = 'content'
+          this.err = 'content'
+          return
         }
         let params = `accesstoken=${this.accesstoken}&title=${this.title}&tab=${this.tab}&content=${this.content}`
         api.Post(params).then(res => {
