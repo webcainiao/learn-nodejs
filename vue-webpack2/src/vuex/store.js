@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import com from './modules/com'
 import list from './modules/list'
 import topic from './modules/topic'
-import newPost from './modules/newPost'
+import publish from './modules/publish'
 import message from './modules/message'
 import user from './modules/user'
 
@@ -17,7 +17,7 @@ export default new Vuex.Store({
     com,
     list,
     topic,
-    newPost,
+    publish,
     message,
     user
   },

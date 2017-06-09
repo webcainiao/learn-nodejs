@@ -52,23 +52,10 @@
     //   })
     // },
     computed: {
-      // ...mapState({
-      //   msgList: state => state.message.msgList
-      // })
+      // 通过mapState和mapGetters获取的表示message状态的计算属性msgList,只能在html结构中直接使用才有数据，或者msgList通过mounted钩子，直接调用api方法才可取到msgList的值.如果是通过当前组件的钩子发送‘getMessagesData’的actions，来获取状态中存储的msgList,则msgList取不到相关数据，不能给当前组件的currentData赋值.如果在入口文件main.js中加入判断登录状态来发送'getMessagesData'的actions,则msgList状态可以获取到数据，但是在mounted钩子中this.msgList还是没有数据，导致进入message路由后，页面没有数据来驱动，但是刷新页面后可以获取到数据。所以最后，直接在mounted钩子中，使用api来获取数据。
       ...mapGetters({
-        getUserInfo: 'getUserInfo'
+        getUserInfo: 'getUserInfo' // 但是这个状态却可以取到，并且在mounted钩子中正常使用
       })
-    //   currentMsgData: () => {
-    //     let hasRead = this.msgList.has_read_messages
-    //     let hasNotread = this.msgList.hasnot_read_messages
-    //     if (this.tabIndex === 1) {
-    //       this.noData = hasRead.length === 0
-    //       return hasRead
-    //     } else {
-    //       this.noData = hasNotread.length === 0
-    //       return hasNotread
-    //     }
-    //   }
     },
     mounted () {
       api.GetMessages(JSON.parse(localStorage.getItem('user')).accesstoken).then(d => {
@@ -86,26 +73,6 @@
           this.noData = true
         }
       })
-      // console.log(JSON.parse(localStorage.getItem('user')))
-      // this.$store.dispatch('getMessagesData', this.getUserInfo.accesstoken)
-      // console.log(this.getUserInfo)
-      // console.log(this.msgList)
-      // console.log(this.$store.getters.getMsgList)
-      // console.log(this.$store.getters)
-      // console.log(this.$store.state)
-      // console.log(this.$store.state.message.msgList)
-      // this.toTabIndex(1)
-      // 不知道为什么获取到的计算属性this.msgList是空的，好纠结
-      // 这里面应该不能执行条件判断
-      // let hasRead = this.msgList.has_read_messages
-      // let hasNotread = this.msgList.hasnot_read_messages
-      // if (this.tabIndex === 1) {
-      //   this.currentMsgData = hasRead
-      //   this.noData = hasRead.length === 0
-      // } else {
-      //   this.currentMsgData = hasNotread
-      //   this.noData = hasNotread.length === 0
-      // }
     },
     methods: {
       toTabIndex (index) {

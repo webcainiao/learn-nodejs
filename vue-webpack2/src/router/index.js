@@ -12,9 +12,9 @@ const Topic = resolve => {
     resolve(require('../views/topic.vue'))
   })
 }
-const NewPost = resolve => {
-  require.ensure(['../views/newPost.vue'], () => {
-    resolve(require('../views/newPost.vue'))
+const Publish = resolve => {
+  require.ensure(['../views/publish.vue'], () => {
+    resolve(require('../views/publish.vue'))
   })
 }
 const Message = resolve => {
@@ -50,9 +50,9 @@ const routes = [
     component: Topic,
     name: 'topic'
   }, {
-    path: '/add',
-    component: NewPost,
-    name: 'add',
+    path: '/publish',
+    component: Publish,
+    name: 'publish',
     meta: {requiresAuth: true}
   }, {
     path: '/message',

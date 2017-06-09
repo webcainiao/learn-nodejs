@@ -1,3 +1,6 @@
+<!-- 不知道为什么总是每次进入/topic/:id路由时,报语法错误，提示
+cant read property 'avatar_url' of undefined,但是页面也一样正常显示，
+而且刷新页面还是显示同样的错误 -->
 <template>
   <div>
     <h2 v-text="topic.title"></h2>
